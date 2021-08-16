@@ -1,0 +1,45 @@
+[2021-08-16 16:30:16,322] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: spotify-etl.insert_into_database 2021-08-16T16:30:12.779690+00:00 [queued]>
+[2021-08-16 16:30:16,333] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: spotify-etl.insert_into_database 2021-08-16T16:30:12.779690+00:00 [queued]>
+[2021-08-16 16:30:16,334] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2021-08-16 16:30:16,335] {taskinstance.py:1088} INFO - Starting attempt 1 of 1
+[2021-08-16 16:30:16,335] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2021-08-16 16:30:16,351] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): insert_into_database> on 2021-08-16T16:30:12.779690+00:00
+[2021-08-16 16:30:16,355] {standard_task_runner.py:52} INFO - Started process 2589 to run task
+[2021-08-16 16:30:16,360] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'spotify-etl', 'insert_into_database', '2021-08-16T16:30:12.779690+00:00', '--job-id', '43', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/spotify-etl/spotify-etl.py', '--cfg-path', '/tmp/tmpzq_z1fov', '--error-file', '/tmp/tmp76opldns']
+[2021-08-16 16:30:16,361] {standard_task_runner.py:77} INFO - Job 43: Subtask insert_into_database
+[2021-08-16 16:30:16,408] {logging_mixin.py:104} INFO - Running <TaskInstance: spotify-etl.insert_into_database 2021-08-16T16:30:12.779690+00:00 [running]> on host 4095d62d00ed
+[2021-08-16 16:30:16,463] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=spotify-etl
+AIRFLOW_CTX_TASK_ID=insert_into_database
+AIRFLOW_CTX_EXECUTION_DATE=2021-08-16T16:30:12.779690+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2021-08-16T16:30:12.779690+00:00
+[2021-08-16 16:30:16,564] {logging_mixin.py:104} INFO - Started insertion...
+[2021-08-16 16:30:16,566] {taskinstance.py:1501} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/opt/airflow/dags/spotify-etl/spotify-etl.py", line 138, in insert_into_database
+    values = [cur.mogrify("(%s,%s,%s,%s)", tup).decode('utf-8') for tup in tuples]
+  File "/opt/airflow/dags/spotify-etl/spotify-etl.py", line 138, in <listcomp>
+    values = [cur.mogrify("(%s,%s,%s,%s)", tup).decode('utf-8') for tup in tuples]
+TypeError: not all arguments converted during string formatting
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1157, in _run_raw_task
+    self._prepare_and_execute_task_with_callbacks(context, task)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1331, in _prepare_and_execute_task_with_callbacks
+    result = self._execute_task(context, task_copy)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1361, in _execute_task
+    result = task_copy.execute(context=context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python.py", line 150, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python.py", line 161, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/spotify-etl/spotify-etl.py", line 147, in insert_into_database
+    raise Exception("Error: {error}".format(error=error))
+Exception: Error: not all arguments converted during string formatting
+[2021-08-16 16:30:16,577] {taskinstance.py:1551} INFO - Marking task as FAILED. dag_id=spotify-etl, task_id=insert_into_database, execution_date=20210816T163012, start_date=20210816T163016, end_date=20210816T163016
+[2021-08-16 16:30:16,612] {local_task_job.py:149} INFO - Task exited with return code 1

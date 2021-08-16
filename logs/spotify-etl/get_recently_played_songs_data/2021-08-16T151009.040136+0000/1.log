@@ -1,0 +1,22 @@
+[2021-08-16 15:10:10,703] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: spotify-etl.get_recently_played_songs_data 2021-08-16T15:10:09.040136+00:00 [queued]>
+[2021-08-16 15:10:10,718] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: spotify-etl.get_recently_played_songs_data 2021-08-16T15:10:09.040136+00:00 [queued]>
+[2021-08-16 15:10:10,718] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2021-08-16 15:10:10,719] {taskinstance.py:1088} INFO - Starting attempt 1 of 1
+[2021-08-16 15:10:10,719] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2021-08-16 15:10:10,735] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): get_recently_played_songs_data> on 2021-08-16T15:10:09.040136+00:00
+[2021-08-16 15:10:10,739] {standard_task_runner.py:52} INFO - Started process 1153 to run task
+[2021-08-16 15:10:10,742] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'spotify-etl', 'get_recently_played_songs_data', '2021-08-16T15:10:09.040136+00:00', '--job-id', '22', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/spotify-etl.py', '--cfg-path', '/tmp/tmpts0oolvh', '--error-file', '/tmp/tmpsboy0f83']
+[2021-08-16 15:10:10,743] {standard_task_runner.py:77} INFO - Job 22: Subtask get_recently_played_songs_data
+[2021-08-16 15:10:10,789] {logging_mixin.py:104} INFO - Running <TaskInstance: spotify-etl.get_recently_played_songs_data 2021-08-16T15:10:09.040136+00:00 [running]> on host 4095d62d00ed
+[2021-08-16 15:10:10,839] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=spotify-etl
+AIRFLOW_CTX_TASK_ID=get_recently_played_songs_data
+AIRFLOW_CTX_EXECUTION_DATE=2021-08-16T15:10:09.040136+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2021-08-16T15:10:09.040136+00:00
+[2021-08-16 15:10:11,165] {python.py:151} INFO - Done. Returned value was: None
+[2021-08-16 15:10:11,179] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=spotify-etl, task_id=get_recently_played_songs_data, execution_date=20210816T151009, start_date=20210816T151010, end_date=20210816T151011
+[2021-08-16 15:10:11,218] {taskinstance.py:1265} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2021-08-16 15:10:11,236] {local_task_job.py:149} INFO - Task exited with return code 0

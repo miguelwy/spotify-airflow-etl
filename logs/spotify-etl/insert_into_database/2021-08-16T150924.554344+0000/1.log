@@ -1,0 +1,61 @@
+[2021-08-16 15:09:28,614] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: spotify-etl.insert_into_database 2021-08-16T15:09:24.554344+00:00 [queued]>
+[2021-08-16 15:09:28,643] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: spotify-etl.insert_into_database 2021-08-16T15:09:24.554344+00:00 [queued]>
+[2021-08-16 15:09:28,644] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2021-08-16 15:09:28,644] {taskinstance.py:1088} INFO - Starting attempt 1 of 1
+[2021-08-16 15:09:28,645] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2021-08-16 15:09:28,676] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): insert_into_database> on 2021-08-16T15:09:24.554344+00:00
+[2021-08-16 15:09:28,682] {standard_task_runner.py:52} INFO - Started process 1090 to run task
+[2021-08-16 15:09:28,687] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'spotify-etl', 'insert_into_database', '2021-08-16T15:09:24.554344+00:00', '--job-id', '21', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/spotify-etl.py', '--cfg-path', '/tmp/tmp559byd5m', '--error-file', '/tmp/tmphgnvlvvo']
+[2021-08-16 15:09:28,689] {standard_task_runner.py:77} INFO - Job 21: Subtask insert_into_database
+[2021-08-16 15:09:28,753] {logging_mixin.py:104} INFO - Running <TaskInstance: spotify-etl.insert_into_database 2021-08-16T15:09:24.554344+00:00 [running]> on host 4095d62d00ed
+[2021-08-16 15:09:28,821] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=spotify-etl
+AIRFLOW_CTX_TASK_ID=insert_into_database
+AIRFLOW_CTX_EXECUTION_DATE=2021-08-16T15:09:24.554344+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2021-08-16T15:09:24.554344+00:00
+[2021-08-16 15:09:28,846] {logging_mixin.py:104} INFO - Started insertion...
+[2021-08-16 15:09:28,847] {taskinstance.py:1501} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/opt/airflow/dags/spotify-etl.py", line 94, in get_connection
+    params = config()
+  File "/opt/airflow/dags/modules/config.py", line 17, in config
+    raise Exception('Section {0} not found in the {1} file'.format(section, filename))
+Exception: Section postgresql not found in the database.ini file
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/airflow/dags/spotify-etl.py", line 134, in insert_into_database
+    conn = get_connection()
+  File "/opt/airflow/dags/spotify-etl.py", line 99, in get_connection
+    raise Exception("Error connecting to database: {error}".format(error=error))
+Exception: Error connecting to database: Section postgresql not found in the database.ini file
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/airflow/dags/spotify-etl.py", line 145, in insert_into_database
+    conn.rollback()
+UnboundLocalError: local variable 'conn' referenced before assignment
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1157, in _run_raw_task
+    self._prepare_and_execute_task_with_callbacks(context, task)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1331, in _prepare_and_execute_task_with_callbacks
+    result = self._execute_task(context, task_copy)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1361, in _execute_task
+    result = task_copy.execute(context=context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python.py", line 150, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python.py", line 161, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/spotify-etl.py", line 148, in insert_into_database
+    if conn is not None:
+UnboundLocalError: local variable 'conn' referenced before assignment
+[2021-08-16 15:09:28,858] {taskinstance.py:1551} INFO - Marking task as FAILED. dag_id=spotify-etl, task_id=insert_into_database, execution_date=20210816T150924, start_date=20210816T150928, end_date=20210816T150928
+[2021-08-16 15:09:28,898] {local_task_job.py:149} INFO - Task exited with return code 1

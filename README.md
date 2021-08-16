@@ -5,3 +5,5 @@ In this project, I used requests lib for consulting the spotify API and psycopg2
 
 To use the spotify API it's necessary to get a fresh token and insert it into the dag file.
 https://developer.spotify.com/console/get-recently-played/?limit=&after=&before=
+
+Database settings can be specified in the database.ini file.
